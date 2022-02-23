@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="adminlayout" template="/WEB-INF/views/admin/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="css"
+			value="/WEB-INF/views/admin/common/css.jsp" />
+		<put-attribute name="js"
+			value="/WEB-INF/views/admin/common/js.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/admin/common/side.jsp" />
+		<put-attribute name="side"
+			value="/WEB-INF/views/admin/common/header.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+</tiles-definitions>
+		

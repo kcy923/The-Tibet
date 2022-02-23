@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.product">
+	
+	<sql id="sort">
+		<if test='value == 4'>
+			ORDER BY product_name
+		</if>
+
+		<if test='value == 3'>
+			ORDER BY product_price DESC
+		</if>
+
+		<if test='value == 2'>
+			ORDER BY product_price ASC
+		</if>
+
+		<if test='value == 1'>
+			ORDER BY product_date DESC
+		</if>
+	</sql>
+	
+	<select id="OUTER" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where main_category_num = '2' <include refid="sort" />
+	</select>
+	<select id="TOP" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where main_category_num = '3' <include refid="sort" />
+	</select>
+	<select id="PANTS" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where main_category_num = '4' <include refid="sort" />
+	</select>
+	<select id="BAG" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where main_category_num = '5' <include refid="sort" />
+	</select>
+	<select id="ACC" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where main_category_num = '6' <include refid="sort" />
+	</select>
+	<select id="SALE" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where product_sale != 0 <include refid="sort" />
+	</select>
+	<select id="OUTER1" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '201' <include refid="sort" />
+	</select>
+	<select id="OUTER2" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '202' <include refid="sort" />
+	</select>
+	<select id="TOP1" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '301' <include refid="sort" />
+	</select>
+	<select id="TOP2" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '302' <include refid="sort" />
+	</select>
+	<select id="TOP3" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '303' <include refid="sort" />
+	</select>
+	<select id="TOP4" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '304' <include refid="sort" />
+	</select>
+	<select id="TOP5" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '305' <include refid="sort" />
+	</select>
+	<select id="PANTS1" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '401' <include refid="sort" />
+	</select>
+	<select id="PANTS2" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '402' <include refid="sort" />
+	</select>
+	<select id="BAG1" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '501' <include refid="sort" />
+	</select>
+	<select id="BAG2" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '502' <include refid="sort" />
+	</select>
+	<select id="BAG3" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '503' <include refid="sort" />
+	</select>
+	<select id="BAG4" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '504' <include refid="sort" />
+	</select>
+	<select id="ACC1" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '601' <include refid="sort" />
+	</select>
+	<select id="ACC2" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '602' <include refid="sort" />
+	</select>
+	<select id="ACC3" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '603' <include refid="sort" />
+	</select>
+	<select id="ACC4" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * from product where sub_category_num = '604' <include refid="sort" />
+	</select>
+	<select id="NEW" resultType="com.myspring.tibet.product.vo.ProductVO" parameterType="String">
+		select * from product <include refid="sort" /> Limit 8
+	</select>
+	
+	<select id="SEARCH" resultType="com.myspring.tibet.product.vo.ProductVO" parameterType="String">
+		select * from product where product_name like concat('%',#{KeyWord},'%') 
+	</select>
+	
+	<select id="productDetail" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select 
+		product_num, product_name, product_price, product_sale,
+		product_detail,product_thumbnail,product_img1,product_img2,product_img3,main_category_num, main_category_num 
+		from product where product_num=#{product_num}
+	</select>
+	
+	<select id="productColor" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select
+		   SUBSTRING_INDEX (SUBSTRING_INDEX(product.product_color,',',numbers.n),',',-1) as product_color
+		from 
+		   (select  1 n union  all  select 2  
+		    union  all  select  3  union  all select 4 
+		    union  all  select  5  union  all  select  6
+		    union  all  select  7  union  all  select  8 
+		    union  all  select  9 union  all  select  10) numbers INNER  JOIN product
+		    on CHAR_LENGTH ( product.product_color ) - CHAR_LENGTH ( REPLACE ( product.product_color ,  ',' ,  '' ))>= numbers . n-1 where product_num=#{product_num}
+	</select>
+	
+	<select id="productSize" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select
+		   SUBSTRING_INDEX (SUBSTRING_INDEX(product.product_size,',',numbers.n),',',-1) as product_size
+		from 
+		   (select  1 n union  all  select 2  
+		    union  all  select  3  union  all select 4 
+		    union  all  select  5  union  all  select  6
+		    union  all  select  7  union  all  select  8 
+		    union  all  select  9 union  all  select  10) numbers INNER  JOIN product
+		    on CHAR_LENGTH ( product.product_size ) - CHAR_LENGTH ( REPLACE ( product.product_size ,  ',' ,  '' ))>= numbers . n-1 where product_num=#{product_num}
+	</select>
+	
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin.member">
+
+	<resultMap id="memberResult" type="memberVO">
+		<result property="user_id" column="user_id" />
+		<result property="user_pw" column="user_pw" />
+		<result property="user_name" column="user_name" />
+		<result property="user_birth" column="user_birth" />
+		<result property="user_phone" column="user_phone" />
+		<result property="user_email" column="user_email" />
+		<result property="user_zip" column="user_zip" />
+		<result property="user_addr1" column="user_addr1" />
+		<result property="user_addr2" column="user_addr2" />
+		<result property="user_gender" column="user_gender" />
+		<result property="user_membership" column="user_membership" />
+		<result property="user_joinDate" column="user_joinDate" />
+		<result property="user_point" column="user_point" />
+		<result property="user_mailSend" column="user_mailSend" />
+	</resultMap>
+
+	<!--회원 목록 페이징 -->
+	<select id="selectAllmemberList" resultType="hashmap" parameterType="hashmap">
+     	SELECT cast(@num:=@num+1 AS signed integer) AS num, 
+     		user_id, 
+     		user_name, 
+     		user_birth, 
+     		user_gender, 
+     		user_membership, 
+     		user_phone, 
+     		user_point, 
+     		user_joinDate
+		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS m, user
+		ORDER BY user_joinDate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!--회원 강제탈퇴 -->
+	<delete id="memberDelete" parameterType="String">
+		delete user where user_id=#{user_id}
+	</delete>
+	
+	<!--회원 목록-->
+	<select id="countMemberList" resultType="Integer">
+		select count(*) from user
+	</select>
+	
+	<!--회원 상세 -->
+	<select id="memberDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
+	     	user_id, 
+     		user_name, 
+     		user_birth, 
+     		user_gender, 
+     		user_membership, 
+     		user_phone, 
+     		user_point, 
+     		user_joinDate
+		notice_num=#{notice_num}
+	</select>
+	
+</mapper>
+

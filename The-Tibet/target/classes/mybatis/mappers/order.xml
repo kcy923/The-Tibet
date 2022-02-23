@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.order">
+	
+	<insert id="addOrder" parameterType="com.myspring.tibet.order.vo.OrderVO">
+		insert into tibetdb.order(order_num, order_name, order_tel, order_phone, order_email, 
+			receiver_name, receiver_zip, receiver_addr1, receiver_addr2, receiver_tel, receiver_phone, receiver_msg, 
+			order_state, order_pay, product_num, product_name, product_thumbnail, product_price, product_sale, product_color, product_size, product_count, user_id) 
+		values
+			(#{order_num}, #{order_name}, #{order_tel}, #{order_phone}, #{order_email}, 
+			#{receiver_name}, #{receiver_zip}, #{receiver_addr1}, #{receiver_addr2}, #{receiver_tel}, #{receiver_phone}, #{receiver_msg}, 
+			#{order_state}, #{order_pay}, #{product_num}, #{product_name}, #{product_thumbnail}, #{product_price}, #{product_sale}, 
+			#{product_color}, #{product_size}, #{product_count}, #{user_id})
+	</insert>
+	
+	<select id="selectOrderNum" resultType="com.myspring.tibet.order.vo.OrderVO">
+		select order_num from tibetdb.order
+	</select>
+	
+	<select id="selectOrderList" resultType="com.myspring.tibet.order.vo.OrderVO" parameterType="String">
+	<![CDATA[
+		SELECT * from tibetdb.order WHERE user_id=#{user_id}
+	]]>
+	</select>
+	
+	<select id="selectDateOrderList" resultType="com.myspring.tibet.order.vo.OrderVO" parameterType="HashMap">
+		SELECT * from tibetdb.order WHERE user_id=#{user_id} and (order_date between #{dateFrom} AND #{dateTo});
+	</select>
+	
+	<select id="selectCancelList" resultType="com.myspring.tibet.order.vo.OrderVO" parameterType="String">
+	<![CDATA[
+		SELECT * FROM tibetdb.order WHERE user_id=#{user_id} and (order_state LIKE '%교환%' or order_state LIKE '%취소%' or order_state LIKE '%반품%');
+	]]>
+	</select>
+	
+	<select id="selectDateCancelList" resultType="com.myspring.tibet.order.vo.OrderVO">
+		SELECT * from tibetdb.order WHERE user_id=#{user_id} and (order_date &gt;= #{dateFrom} AND order_date &lt;= #{dateTo}) and (order_state LIKE '%교환%' or order_state LIKE '%취소%' or order_state LIKE '%반품%');
+	</select>
+	
+	<insert id="reviewWrite" parameterType="com.myspring.tibet.board.vo.ReviewVO">
+		insert into review(review_title,review_img1,review_img2,review_img3,review_content,review_option,review_height,review_weight,user_id,product_num,order_num)
+		values(#{review_title},#{review_img1},#{review_img2},#{review_img3},#{review_content},#{review_option},#{review_height},#{review_weight},#{user_id},#{product_num},#{order_num})
+	</insert>
+	
+	<select id="selectLastOrder" resultType="com.myspring.tibet.order.vo.OrderVO">
+		select * from tibetdb.`order` where user_id=#{user_id} order by order_date desc limit 1
+	</select>
+	
+	<select id="selectLastOrderList" resultType="com.myspring.tibet.order.vo.OrderVO">
+		select * from tibetdb.`order` where order_num=#{order_num}
+	</select>
+	
+</mapper>

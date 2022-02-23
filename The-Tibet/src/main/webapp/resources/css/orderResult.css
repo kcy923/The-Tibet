@@ -1,0 +1,86 @@
+.result-div {
+    height: 60px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 1px solid #111;
+}
+
+.result-table-div {
+	border-bottom: 1px solid #111;
+}
+
+.result-table {
+	height: auto;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.result-table-head {
+	height: 60px;
+	justify-content: center;
+	width: 100%;
+	align-items: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000000;
+	line-height: 1.2;
+	background-color: #f9f9f9;
+}
+
+.result-table-head tr th{
+	text-align: center;
+    vertical-align: middle;
+}
+
+.result-table-body tr{
+	height: 120px;
+}
+
+.result-table-body tr td{
+	text-align: center;
+    vertical-align: middle; 
+    font-size: 16px; 
+}
+
+.btn-div {
+	display: flex;
+	width: 100%;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+}
+
+#orderList-btn {
+	margin: 5% 3%;
+    border: none;
+    outline: none;
+    padding: 1px 6px;
+    height: 80px;
+    width: 400px;
+    background-color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    line-height: 1.2;
+    border: 1px solid #E3E5E8;
+    cursor: pointer;
+}
+
+#main-btn {
+	margin: 5% 3%;
+    border: none;
+    outline: none;
+    padding: 1px 6px;
+    height: 80px;
+    width: 400px;
+    background-color: rgb(17, 17, 17);
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1.2;
+    cursor: pointer;
+}

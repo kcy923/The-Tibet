@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.myspring.tibet.board.vo.NoticeVO"  alias="noticeVO" />
+		<typeAlias type="com.myspring.tibet.board.vo.QnaVO"  alias="qnaVO" />
+		<typeAlias type="com.myspring.tibet.board.vo.QnaCommentVO" alias="qnacommentVO" />
+		<typeAlias type="com.myspring.tibet.board.vo.ReviewVO"  alias="reviewVO" />
+		<typeAlias type="com.myspring.tibet.member.vo.MemberVO"  alias="memberVO" />
+		<typeAlias type="com.myspring.tibet.product.vo.ProductVO" alias="productVO" />
+		<typeAlias type="com.myspring.tibet.cart.vo.CartVO" alias="cartVO" />
+		<typeAlias type="com.myspring.tibet.order.vo.OrderVO" alias="orderVO" />
+		<typeAlias type="com.myspring.tibet.order.vo.OrderPageVO" alias="orderPageVO" />
+		<typeAlias type="com.myspring.tibet.utils.Criteria" alias="criteria" />
+		<typeAlias type="com.myspring.tibet.utils.PageMaker" alias="pageMaker" />
+		<typeAlias type="com.myspring.tibet.product.vo.MainCateVO" alias="mainCateVO" />
+	</typeAliases>
+</configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="admin-register" extends="adminlayout">
+		<put-attribute name="title" value="상품등록" />
+		<put-attribute name="body" 
+			value="/WEB-INF/views/admin/product/admin-product-register.jsp" />
+	</definition>
+		
+	<definition name="admin-product" extends="adminlayout">
+		<put-attribute name="title" value="상품등록" />
+		<put-attribute name="body" 
+			value="/WEB-INF/views/admin/product/admin-product.jsp" />
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.cart">
+
+	<select id="cartList" resultType="com.myspring.tibet.cart.vo.CartVO">
+		select * from cart where user_id=#{user_id}
+	</select>
+	
+	<select id="cartNowBuyList" resultType="com.myspring.tibet.cart.vo.CartVO" parameterType="String">
+		select * from cart where user_id=#{user_id} order by cart_date desc limit 1
+	</select>
+	
+	<select id="cartOrderList" resultType="com.myspring.tibet.cart.vo.CartVO" parameterType="java.util.ArrayList">
+		SELECT * FROM cart
+	    WHERE cart_num IN (
+	        <foreach collection="array" item="item" index="index" separator=",">
+	            ${item}
+	        </foreach>
+	    )
+	</select>
+	
+	<insert id="addCart" parameterType="com.myspring.tibet.cart.vo.CartVO">
+		insert into cart(product_num, product_name, product_thumbnail, product_price, product_sale, product_color, product_size, product_count, user_id) 
+		values(#{product_num}, #{product_name}, #{product_thumbnail}, #{product_price}, #{product_sale}, #{product_color}, #{product_size}, #{product_count}, #{user_id})
+	</insert>
+	
+	<update id="modifyCnt" parameterType="com.myspring.tibet.cart.vo.CartVO">
+		update cart set product_count=#{product_count} where user_id=#{user_id} and product_num=#{product_num} and product_color=#{product_color} and product_size=#{product_size}
+	</update>
+	
+	<delete id="deleteCart" parameterType="com.myspring.tibet.cart.vo.CartVO">
+		delete from cart where product_num=#{product_num} and product_color=#{product_color} and product_size=#{product_size} and user_id=#{user_id}
+	</delete>
+	
+	<select id="checkCart" resultType="int">
+		select count(*) from cart where user_id=#{user_id} and product_num=#{product_num} and product_color=#{product_color} and product_size=#{product_size} and user_id=#{user_id}
+	</select>
+	
+	<delete id="deleteCartList" parameterType="com.myspring.tibet.order.vo.OrderVO">
+		delete from cart where product_num=#{product_num} and product_color=#{product_color} and product_size=#{product_size} and user_id=#{user_id}
+	</delete>
+	
+</mapper>

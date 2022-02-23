@@ -1,0 +1,306 @@
+.mypage-table{
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+    border-width: 1px;
+    border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.mgb10{
+    margin-top: 10px;
+    margin-bottom: 0px;
+	border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.mypage-front-fonter-orderList:hover{
+	text-decoration: underline #000000;
+}
+
+.mypage-front-fonter-memModify{
+	color: #999;
+}
+
+.mypage-front-fonter-memModify:hover{
+	text-decoration: underline #999;
+}
+
+.mypage-front-fonter-delivery{
+	color: #999;
+}
+
+.mypage-front-fonter-delivery:hover{
+	text-decoration: underline #999;
+}
+
+.mypage-detail-table{
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.2;
+    border-width: 1px;
+}
+
+.mypage-orderList:hover{
+	text-decoration: underline #000000;
+}
+
+.mypage-cancelList{
+	color: #999;
+}
+
+.mypage-cancelList:hover{
+	text-decoration: underline #999;
+}
+
+.select-date{
+	padding-left: 1%;
+}
+
+.cal-label {
+    display: inline;
+}
+
+#start {
+	display: inline;
+}
+
+input, label {
+    margin: .4rem 0;
+}
+
+.orderList{
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.cancelList-titlebox {
+	display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-bottom: 1%;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.orderList-title{
+	font-size: 15px;
+	font-weight: bold;
+	padding-left: 2%;
+	padding-top: 10px;
+}
+.date-button{
+	background-color: black;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    height: 25px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.cancelList-tablebox{
+	text-align: -webkit-center;
+}
+.div-orderList{
+	width: 90%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.orderList-table{
+	border-bottom: 1px solid rgb(0, 0, 0);
+	border-top: 2px solid rgb(0, 0, 0);
+
+}
+
+.orderList-tr{
+	border-bottom: 1px solid rgb(153, 153, 153);
+}
+
+.orderList-tr:last-child{
+	border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+th{
+	height: 50px;
+	color: #999; 
+}
+
+td{
+	text-align: center;
+	height: 160px;
+}
+
+.orderDate-th, .orderDate{
+	width: 16%;
+	vertical-align: middle;
+}
+
+.orderImage-th, .orderImage{
+	width: 12%;
+	vertical-align: middle;
+}
+
+.orderInfo-th, .orderInfo{
+	width: 27%;
+	vertical-align: middle;
+}
+
+.orderCount-th, .orderCount{
+	width: 12%;
+	vertical-align: middle;
+}
+
+.orderCash-th, .orderCash{
+	width: 15%;
+	vertical-align: middle;
+}
+
+.orderState-th, .orderState{
+	width: 18%;
+	white-space: pre;
+	vertical-align: middle;
+}
+
+
+.orderImage-a:hover, .orderInfo-a:hover{
+	text-decoration: underline #000000;
+}
+
+.orderImage img {
+	max-height: 80%;
+}
+
+#review-btn {
+	width: 120px;
+	height: 35px;
+	background: #000000;
+	color: #FFFFFF;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	border: none;
+	cursor: pointer;
+	border-radius: 6px;
+}
+
+#cancel-btn{
+	width: 120px;
+	height: 35px;
+	background: #FFFFFF;
+	color: #000000;
+	border: 1px solid rgb(0, 0, 0);
+	cursor: pointer;
+	border-radius: 6px;
+}
+
+.div-title{
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.info-label, .writer-label, .size-label,
+.height-label, .weight-label, .cancel-select{
+	height: 25px;
+	width: 90px;
+	display: inline-block;
+	line-height: 25px;
+}
+
+.content-label{
+	height: 200px;
+	width: 95px;
+	display: inline-block;
+	line-height: 200px;
+}
+
+.info-input, .content-input{
+	width: 470px;
+}
+
+.writer-input, .height-input{
+	margin-right: 3%;
+}
+
+.writer-input, .size-input,
+.height-input, .weight-input{
+	width: 170px;
+}
+
+.info-input, .writer-input, .size-input,
+.height-input, .weight-input{
+	height: 20px;
+	padding-left: 5px;
+}
+
+.content-input{
+	height: 200px;
+	padding-left: 5px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	resize: none;
+}
+
+.div-content{
+	display: flex;
+}
+
+.review-write, .cancel-write{
+	 text-align: center;
+}
+
+.review-write-btn, .cancel-write-btn{
+	width: 150px;
+	height: 40px;
+	background: #000000;
+	color: #FFFFFF;
+	border: none;
+	font-size: 15px;
+	font-weight: bold;
+	border-radius: 6px;
+}
+
+.div-cancel{
+	margin-bottom: 1%;
+}
+
+.cancel-label{
+	height: 25px;
+	width: 95px;
+	display: inline-block;
+	line-height: 25px;
+}
+
+.cancel-select{
+	width: 100px;
+}
+
+i{
+	cursor: pointer;
+}
+
+#review-modal, #cancel-modal {
+	display: none;
+	width: 600px;
+	padding: 20px 60px;
+	background-color: #fefefe;
+	border: 1px solid #888;
+	border-radius: 6px;
+}
+
+#review-modal .modal_close_btn, #cancel-modal .modal_close_btn{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}

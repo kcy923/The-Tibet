@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin.board">
+
+	<resultMap id="noticeResult" type="noticeVO">
+		<result property="notice_num" column="notice_num" />
+		<result property="notice_title" column="notice_title" />
+		<result property="notice_content" column="notice_content" />
+		<result property="notice_date" column="notice_date" />
+		<result property="notice_img1" column="notice_img1" />
+		<result property="notice_img2" column="notice_img2" />
+		<result property="notice_img3" column="notice_img3" />
+		<result property="user_id" column="user_id" />
+	</resultMap>
+	<!-- 공지사항 페이징 -->
+<select id="selectAllNoticesList" resultType="hashmap" parameterType="hashmap">
+     	SELECT cast(@num:=@num+1 AS signed integer) AS num,
+	     	notice_num,
+	     	notice_title,
+	     	notice_content,
+	     	user_id,
+     		cast(notice_date AS DATE) as notice_date
+		FROM 
+		(SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS n, notice
+		where notice_num > 0
+		<include refid="search"></include>
+		ORDER BY notice_date DESC
+		LIMIT #{pageStart}, #{perPageNum}
+</select>
+	<!-- 공지사항 목록 -->
+	<select id="adminopenNoticeList" parameterType="noticeVO" resultType="int">
+        SELECT count(notice_num)
+        FROM notice
+        where notice_num > 0
+    <include refid="search"></include>
+	</select>
+	<!-- 공지사항 등록 -->
+	<insert id="insertNoticeWritePage" parameterType="noticeVO">
+	<![CDATA[
+     	insert into notice (
+	     	notice_num,
+	     	notice_title,
+	     	notice_content,
+	     	notice_img1,
+	     	notice_img2,
+	     	notice_img3,
+	     	user_id)
+     	values(#{notice_num}, #{notice_title}, #{notice_content}, #{notice_img1}, #{notice_img2},#{notice_img3}, #{user_id})
+    ]]>
+	</insert>
+	<!-- 공지사항 상세 -->
+	<select id="adminnoticeDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
+		select notice_num, 
+			notice_title, 
+			notice_content,
+		cast(notice_date AS DATE) as 
+			notice_date, 
+			notice_img1, 
+			notice_img2,
+			notice_img3, 
+			user_id 
+		from notice 
+		where notice_num=#{notice_num}
+	</select>
+
+	<!-- 공지사항 수정 -->
+	<update id="modifynotice" parameterType="com.myspring.tibet.board.vo.NoticeVO">
+	<![CDATA[
+		update tibetdb.notice
+		set 
+			notice_title = #{notice_title},
+			notice_content = #{notice_content},
+			notice_img1 = #{notice_img1},
+			notice_img2 = #{notice_img2},
+			notice_img3 = #{notice_img3},
+			notice_date=NOW() 
+	  where notice_num = #{notice_num}
+	  	]]>
+	</update>
+	<!-- 공지사항 삭제 -->
+	<delete id="noticedelete" parameterType="Integer">
+	<![CDATA[
+		delete from notice where notice_num=#{notice_num}
+	]]>
+	</delete>
+	<!-- 검색기능 동적쿼리문 -->
+		<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()"> AND notice_title LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'c'.toString()"> AND notice_content LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'w'.toString()"> AND user_id LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'tc'.toString()">AND (notice_title like CONCAT('%', #{keyword}, '%') or notice_content like CONCAT('%', #{keyword}, '%'))</if>
+			<if test="searchType == 'all'.toString()">AND (notice_title like CONCAT('%', #{keyword}, '%') or notice_content like CONCAT('%', #{keyword}, '%') or user_id like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+</mapper>

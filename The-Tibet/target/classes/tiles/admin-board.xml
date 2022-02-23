@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="/admin-notice" extends="adminlayout">
+		<put-attribute name="title" value="The Tibet" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/service/admin-notice.jsp" />
+	</definition>
+			
+	<definition name="/admin-noticeDetail" extends="adminlayout">
+		<put-attribute name="title" value="공지사항 상세페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/service/admin-noticeDetail.jsp" />
+	</definition>
+		
+	<definition name="/admin-noticeWrite" extends="adminlayout">
+		<put-attribute name="title" value="공지사항 작성" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/service/admin-noticeWrite.jsp" />
+	</definition>
+	
+	<definition name="/noticeModifyForm" extends="adminlayout">
+		<put-attribute name="title" value="공지사항 수정" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/service/admin-noticeModify.jsp" />
+	</definition>
+
+</tiles-definitions>
